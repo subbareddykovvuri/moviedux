@@ -1,13 +1,3 @@
-# Installtion of node modules
-To run this projecct NodeJS must be installed in your System
-1. Redirect to the moviedux folder
-2. Execute the "npm install" in cmd
-3. Wait for while until all the packages are downloaded
-
-# Start the Application
-To start the application you need to run "npm run dev"
-
-
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
