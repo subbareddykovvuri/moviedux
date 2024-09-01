@@ -1,0 +1,588 @@
+*********************************************************************************************REACTJS***********************************************************************************************
+
+React is a Javascript Framework(NodeJS)
+A React applications runs on a web server
+React is used to create UI(Frontend)
+It's based on a component architecture
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Extensions for React JS to made life eaiser
+
+-> ESLint (microsoft.com) 
+-> Prettier - Code formatter (prettier.io)
+
+goto preferences -> search for format on save -> tick the box
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Creating React and handling packages
+
+open terminal
+
+> npx create-react-app moviedux
+
+It will install all the required files
+
+> cd moviedux
+
+
+Dependencies will be available in package.json
+If you changed any version in package.json
+Delete the node modules folder and package-lock.json
+Now execute to install all the packages required
+
+>npm install
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Exploring React JS project
+==========================
+
+by default it will run on port 3000
+
+inside of public we can keep files which are accessible
+
+src is the important folder
+
+App.js
+-----
+
+It is mix of javascript and HTML "jsx"
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+To assign styling we use className="" inside the tag
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+React Components
+================
+
+Reusable Pieces of UI and Functionality
+
+Components are reusable building blocks.
+Components can be nested within each other
+Can get exported to get imported from other files/components
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Creating Header Component
+=========================
+
+create a new folder named components inside src
+create a .js file and file name must start with capital letter
+Header.js
+---------
+
+import React from 'react';
+import '../styles.css';
+
+export default function Header(){
+  return (
+
+    // we cannot send multiple div at once if we want to send multiple div we need to wrap the div into another div 
+
+    <div>
+       
+    </div>
+  );
+}
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+SECTION - 2 : JAVASCRIPT FOR REACT PART 1: SCOPE, ARROW, FUNCTIONS AND MORE
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Javascript for react Intro
+===========================
+
+main.js
+------
+function main(){
+  console.log("test");
+}
+
+main();
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+scope of var,let and const
+==========================
+
+// var : accessible anywhere global scope
+// let: local scope
+// const: local scope (similar to let) but cannot change the value in the same scope
+
+function scope(){
+  var x=10;
+  x=20;
+
+  let a=50;
+
+  const b=70;
+  //b=80; //it will raise error "ypeError: Assignment to constant variable."
+   
+  const book ={title:"Hello World"};
+
+  book.title="Hello world 2" // we can change value inside the const
+  //book ={title:"Test"} // we cannot change the const value 
+  if (true){
+    // it will still reference the x value
+    var x=30;
+    // creating a new variable 
+    var y=40;
+    // it will not reference the a value 
+    let a=60;
+    console.log("inside the if block value of a:"+a);
+
+    const b=90;
+    //console.log("inside the if block value of b:"+b);
+  }
+  console.log("x:"+x);
+  console.log("y:"+y);
+  console.log("outside the if block value of a:"+a);
+  console.log("b:"+b);
+  console.log(book);
+}
+
+scope();
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Arrow Functions
+==================
+
+function addTraditionalFunction(a,b){
+  console.log("In traditional function");
+  return a+b;
+}
+
+console.log(addTraditionalFunction(1,2));
+
+const addTraditionalFunction1 = function(a,b){
+  console.log("In traditional Function saving to const");
+  return a+b;
+}
+console.log(addTraditionalFunction1(1,2));
+
+const addModernFunction =(a,b) => a+b; 
+console.log(addModernFunction(1,2));
+
+const addModernFunction1 = (a,b) => {
+  console.log("In modern function");
+  return a+b;
+}
+console.log(addModernFunction1(1,2));
+
+const testFunctionWithoutParam = () => console.log("Testing the function without passing parameters");
+testFunctionWithoutParam()
+const testFunctionWithoutParam1 = () =>{
+  console.log("Testing the function without passing parameters");
+}
+testFunctionWithoutParam1()
+
+
+const ids = [1,2,3,4,5];
+
+ids.forEach(id => {
+  id++;
+  console.log(id);
+})
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Functions as declarations or expressions
+========================================
+test(); // it will work
+
+function test(){
+}
+
+
+//test1(); // it will not work
+const test1 = () =>{
+  console.log("Hello World");
+}
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Rest Operator
+============
+
+function test(firstArgumrnt, ...otherArguments){
+  console.log(firstArgumrnt);
+  console.log(otherArguments);
+}
+
+test("Peter","Max");//Peter  (1) ['Max']
+test("Peter","Max","Claudia","Mitch");//Peter (3) ['Max', 'Claudia', 'Mitch']
+test( ['Max', 'Claudia', 'Mitch'], ['Max', 'Claudia', 'Mitch'], ['Max', 'Claudia', 'Mitch']) //(3) ['Max', 'Claudia', 'Mitch'] (2) [Array(3), Array(3)]
+
+
+function test1(firstArgumrnt,secondArgumrnt, ...otherArguments){
+  console.log(firstArgumrnt);
+  console.log(secondArgumrnt);
+  console.log(otherArguments);
+}
+test1("Peter","Max"); //Peter Max (0) []
+test1("Peter","Max","Claudia","Mitch");// Peter Max (2) ['Claudia', 'Mitch']
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Spread Operator
+================
+
+//indicated by three dots(...)
+
+const fruits = ["apple","banana"];
+const moreFruits = ["cherry","melon"];
+//combine two array to single array
+
+const allFruits = [...fruits,...moreFruits];
+
+console.log(allFruits); //['apple', 'banana', 'cherry', 'melon']
+console.log([...fruits,"cherry"]); //['apple', 'banana', 'cherry']
+console.log(..."fruit"); //f r u i t
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+HANDLING STATE WITH REACT
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Creating the MoviesGrid component
+=================================
+
+we have json values we need to convert them to object using serialization
+
+create a comoponent "MoviesGrid.tsx"
+
+create a function MoviesGrid()
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+React 101 -State 
+=================
+State = manage the data in Components
+
+when the state value changes the UI re-renders
+
+import {useState} from "react";
+
+export default function App(){
+  const [movies,setMovies] = useState([]);
+
+  ...
+    const loadedMovies = ...;
+    setMovies(loadMovies)
+  ...
+
+  return (
+    <div> {movies.length}</div>
+  );
+}
+
+
+Manages data of components
+Consist out of two parts(getting & Setting)
+Re-renders the UI when th e state changes (Variable don't do that)
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Creating the movies state with useState
+=======================================
+
+import { useState, useEffect } from 'react';
+
+const [movies,setMovies] = useState([]);
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+ 
+Setting the movie state with useEffect
+======================================
+ useEffect(()=>{
+    const m = ["a","b","c"]
+    setMovies(m)
+  },[]);
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Using the react developer tools
+===============================
+Install React developer tools from Extensions in google chrome
+
+in inspect page in DEVTooks we can change the values of the dynamically
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Loading movies from JSON
+=========================
+fetch("movies.json")
+.then(response => response.json())
+.then(data => setMovies(data))
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Rendering the movies in cards
+============================
+
+    <div className='movies-grid'>
+      {
+        movies.map(movie => (
+          <div key={movie.id} className='movie-card'>
+            <img src={`images/${movie.image}`} alt={movie.title}/>
+            <div className='movie-card-info'>
+              <h3 className='movie-card-genre'>{movie.title}</h3>
+              <p className='movie-card-rating'>{movie.rating}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+React - Props
+===============
+
+Props (property) = Passing data to components
+React Props are used to pass data, eventhandlers and functions to components
+We can pass props to nested components "prop dilling"
+
+
+export default funtion MOviesGrid({
+  const loadedMOvies = ...; //Movie Array
+
+  return(
+    <div>
+      // here are assigning value to movie while calling
+      <MovieCard movie={loadedMovies[0]} />
+    </div>
+  )
+})
+
+
+export default function MovieCard({movie}){
+  return (
+    <div>
+      <h1>{movie.title}</h1>
+    </div>
+  );
+}
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Error handling for image Loading
+================================
+
+If any name of the file or file is missing we will get an error for the image
+
+const handleErro =(e) => {
+        e.target.src = "images/default.jpg";
+    }
+
+<img src={`images/${movie.image}`} alt={movie.title}  onError={handleErro}/>
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Dynamic rating color
+====================
+
+const getRatingClass = (rating) =>  {
+        if(rating>=8){
+            return 'rating-good';
+        }
+        else if(rating>=5 && rating<8){
+            return 'rating-ok';
+        }
+        return 'rating-bad';
+    };
+
+
+
+<p className={`movie-card-rating ${getRatingClass(movie.rating)}`}>{movie.rating}</p>
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+Search state and search bar
+============================
+const [searchTerm, setSearchTerm] = useState("");
+
+            <input  type='text' className='search-input' placeholder='Search Movies ...'/>
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+Search bar logic
+================
+
+const handleSearchChange = (e)=>{
+        setSearchTerm(e.target.value)
+    }
+
+    const filteredMovies = movies.filter(movie => 
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
+     {
+                    filteredMovies.map(movie => (
+                        <MovieCard movie={movie} key={movie.id} />
+                    ))
+                }
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Filtering with advanced UI and eventhandlers
+============================================
+
+Filter bar
+===========
+const [genre, setGenre] = useState("All Genres");
+    const [rating, setRating] = useState("All");
+
+<input type='text' className='search-input' placeholder='Search Movies ...' value={searchTerm} onChange={handleSearchChange} />
+            <div className='filter-bar'>
+                <div className='filter-slot'>
+                    <label>Genre</label>
+                    <select className='filter-dropdown'>
+                        <option>All Genres</option>
+                        <option>Action</option>
+                        <option>Drama</option>
+                        <option>Fantasy</option>
+                        <option>Horror</option>
+                    </select>
+                </div>
+
+                <div className='filter-slot'>
+                    <label>Rating</label>
+                    <select className='filter-dropdown'>
+                        <option>All</option>
+                        <option>Good</option>
+                        <option>Ok</option>
+                        <option>Bad</option>
+                    </select>
+                </div>
+            </div>
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Filter event handling
+======================
+ const handleGenreChange = (e) => {
+        setGenre(e.target.value)
+    }
+
+    const handleRatingChange = (e) => {
+        setRating(e.target.value)
+    }
+
+adding the below in select tag
+value={genre} onChange={handleGenreChange}
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Filter logic
+=============
+const matchesGenre = (movie,genre) => {
+        return genre === "All Genres" || movie.genre.toLowerCase() === genre.toLowerCase();
+    }
+    const matchesSearchTerm = (movie,searchTerm) => {
+        return  movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+
+    const matchesRating = (movie, rating) => {
+        switch(rating){
+            case 'All' :
+                return true;
+            case 'Good' :
+                return movie.rating >=8;
+            case 'Ok' :
+                return movie.rating>=5 && movie.rating<8;
+            case 'Bad' :
+                return movie.rating<5;
+            default:
+                return false;
+        }
+    }
+
+    const filteredMovies = movies.filter(movie =>
+        matchesGenre(movie, genre) &&
+        matchesRating(movie,rating) &&
+        matchesSearchTerm(movie,searchTerm)
+    )
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+React Router, Watchlisting, Lifting State and Props 
+===================================================
+
+React : Router 
+==============
+
+Router = Navigation between components 
+
+Inside of Router we create Routes 
+Routes are defined as following
+
+Route for "/movies"
+Route for "/watchlist"
+
+import {BrowseRouter as Router, Routes, Route, Link} as "react-router-dom";
+
+
+<Router>
+  <Link to="/">Home</Link>
+  <link to="/watchlist">Watchlist</Link>
+
+  <Routes>
+    <Route path="/" element={<MoviesGrid />}></Route>
+    <Route path="/watchlist" element={<Watchlist />}></Route>
+  </Routes>
+</Router>
+
+Handles navigation between components/routes 
+Use Routes to configure the routing
+Use Link to nvaigate the user
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Installing React Router 
+==========================
+npm i react-router-dom@6.22.3
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Configuring the router 
+======================
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+Lifting the movie state 
+=======================
+Removed state from the MovieCard and added to App file 
+now passing the state movie state
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Watchlist state 
+===============
+ setWatchlist(prev => )
+
+ here prev is used to fetch the previous state
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Watchlist component props 
+=========================
+
+
+
