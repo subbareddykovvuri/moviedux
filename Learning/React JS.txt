@@ -584,5 +584,235 @@ Watchlist state
 Watchlist component props 
 =========================
 
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+SECTION 7 : JAVASCRIPT FOR REACT PART 2: MODULES, INTERPOLATIONS AND ARRAY METHODS
+==================================================================================
+
+Default export of modules 
+=========================
+Importing in javascript also need in React JS
+
+create a new file main.js
 
 
+create a new file package.json
+
+{
+  "type":"module"
+}
+
+create a new file math.js
+function sum(x,y){
+  return x+y;
+}
+
+to use the sum method in the main.js
+we need to export the function as follows
+Adding "export default" before the funtion declaration
+
+export default function sum(x,y){
+  return x+y;
+}
+
+or
+function sum(x,y){
+  return x+y;
+}
+
+export default sum;
+
+
+to use this funtion in main.js
+We need to import the function as follows
+
+import sum from "./math.js";
+
+console.log(sum(1,3));
+
+
+if we have another function in same file
+how can we export that
+
+We can only export only one function
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Named export of modules 
+========================
+
+math.js
+--------
+
+function sum(x,y){
+  return x+y;
+}
+
+export function multiply(x,y){
+  return x*y;
+}
+
+export default sum;
+
+main.js
+---------
+
+import add, {multiply as mul} from "./math.js";
+
+console.log(mul(1,3));
+
+//here multiply is the named export and sum is the Default
+// we can call default function with any names but for named function we need to pass the exact name of the function
+
+//we can import everything as follows
+import * as math from "./math.js";
+
+console.log(math.multiply(1,3));
+console.log(math.sum(1,3));
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Template Literals, string interpolations and multiline strings
+=============================================================
+
+const firstName = "John";
+
+const greeting = "Hello" + John;
+
+const greeting = `Hello ${firstName}`; //String interpolation
+
+// inside of Template literals we can pass the string from outside
+
+console.log(greeting);
+
+
+const a = 10;
+cosnt b = 20;
+const desc = ` The sum of ${a} and ${b} is ${a+b}`;
+
+console.log(desc);
+
+// we can use multiple interpolation inside a string
+
+multiline string
+---------------
+
+cosnt user = {
+  name : "Alice",
+  age : 30,
+  city : "Wonderland"
+}
+
+cosnt desc = `User Information:
+Name : ${user.name}
+Age: ${user.age}
+City:${user.city}
+`;
+
+console.log(desc);
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Array find()
+===========
+
+const todos = [
+  {id : 1, task : "Learn JavaScript", completed :false},
+  {id : 2, task : "Practice React", completed :true},
+  {id : 3, task : "Build a Project", completed :false},
+];
+
+// Array find
+
+const todoById = todos.find((todo) => todo.id === 2);
+
+console.log(todoById);
+
+const todoById = todos.find((todo) => todo.completed == false);
+
+console.log(todoById);
+
+
+const todoById = todos.find((todo) => todo.task == "Build a Project");
+
+console.log(todoById);
+
+const todoById = todos.find((todo) => todo.completed == false && todo.task == "Build a Project");
+
+console.log(todoById);
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Array filter()
+===============
+const todos = [
+  {id : 1, task : "Learn JavaScript", completed :false},
+  {id : 2, task : "Practice React", completed :true},
+  {id : 3, task : "Build a Project", completed :false},
+];
+
+const completedTodos =todos.filter(todo => todo.completed == true);
+
+console.log(completedTodos);
+
+// it will not modify the existing array
+// it will create new array with filtered values
+
+const completedTodos =todos.filter(todo => todo.task.includes("project"));
+
+console.log(completedTodos);
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Array forEach()
+===============
+
+const todos = [
+  {id : 1, task : "Learn JavaScript", completed :false},
+  {id : 2, task : "Practice React", completed :true},
+  {id : 3, task : "Build a Project", completed :false},
+];
+
+todos.forEach((todo)=> {
+    todo.completed = true;
+});
+
+console.log(todos);
+
+
+//we can also get the index i the for loop
+
+todos.forEach((todo,index)=> {
+    console.log(index + ": "+todo.task);
+});
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+Array map()
+============
+
+const todos = [
+  {id : 1, task : "Learn JavaScript", completed :false},
+  {id : 2, task : "Practice React", completed :true},
+  {id : 3, task : "Build a Project", completed :false},
+];
+
+// If the completed parameters are not requires we can transform that using map
+
+const mappedTodos = todos.map((todo)=>{
+  return {
+    id : todo.id,
+    des : todo.task
+  }
+})
+
+console.log(mappedTodos);
+
+
+// adding new parameter to the existing 
+const mappedTodos = todos.map((todo)=>{
+  return {...todo,priority:"High"}
+})
+
+console.log(mappedTodos);
